@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import { Search, Bell, Moon, Sun, ChevronDown, User, Settings, LogOut, FileText, BadgeCheck, Menu } from 'lucide-vue-next';
+import { Search, Bell, Moon, Sun, ChevronDown, User, Settings, LogOut, FileText, BadgeCheck, Menu, Github } from 'lucide-vue-next';
 import { useDarkMode } from '../composables/useDarkMode';
 
 defineEmits(['toggle-menu']);
@@ -62,34 +62,43 @@ const toggleProfile = () => {
       <div class="relative">
         <button 
             @click="toggleNotifications"
-            class="relative p-2.5 bg-white border border-zinc-200 rounded-full hover:bg-zinc-50 transition-colors"
+            class="relative p-2.5 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-full hover:bg-zinc-50 dark:hover:bg-zinc-700 transition-colors"
         >
-            <Bell class="w-5 h-5 text-zinc-600" />
-            <span class="absolute top-2 right-2.5 w-2 h-2 bg-red-500 border-2 border-white rounded-full"></span>
+            <Bell class="w-5 h-5 text-zinc-600 dark:text-zinc-300" />
+            <span class="absolute top-2 right-2.5 w-2 h-2 bg-red-500 border-2 border-white dark:border-zinc-800 rounded-full"></span>
         </button>
         
         <!-- Notification Dropdown -->
-        <div v-if="isNotificationsOpen" class="absolute right-0 top-14 w-80 bg-white border border-zinc-100 rounded-2xl shadow-xl z-50 overflow-hidden">
-            <div class="px-4 py-3 border-b border-zinc-50 flex justify-between items-center">
-                <h3 class="font-bold text-zinc-900">Notifications</h3>
+        <div v-if="isNotificationsOpen" class="absolute right-0 top-14 w-80 bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 rounded-2xl shadow-xl z-50 overflow-hidden">
+            <div class="px-4 py-3 border-b border-zinc-50 dark:border-zinc-800 flex justify-between items-center">
+                <h3 class="font-bold text-zinc-900 dark:text-white">Notifications</h3>
                 <span class="text-xs text-orange-500 font-medium cursor-pointer">Mark all read</span>
             </div>
             <div class="max-h-[300px] overflow-y-auto">
-                <div v-for="notif in notifications" :key="notif.id" class="px-4 py-3 hover:bg-zinc-50 cursor-pointer border-b border-zinc-50 last:border-0">
+                <div v-for="notif in notifications" :key="notif.id" class="px-4 py-3 hover:bg-zinc-50 dark:hover:bg-zinc-800 cursor-pointer border-b border-zinc-50 dark:border-zinc-800 last:border-0">
                     <div class="flex items-start gap-3">
-                        <div class="mt-1 w-2 h-2 rounded-full shrink-0" :class="notif.isUnread ? 'bg-orange-500' : 'bg-zinc-300'"></div>
+                        <div class="mt-1 w-2 h-2 rounded-full shrink-0" :class="notif.isUnread ? 'bg-orange-500' : 'bg-zinc-300 dark:bg-zinc-600'"></div>
                         <div>
-                            <p class="text-sm text-zinc-800 font-medium line-clamp-1">{{ notif.title }}</p>
+                            <p class="text-sm text-zinc-800 dark:text-zinc-200 font-medium line-clamp-1">{{ notif.title }}</p>
                             <p class="text-xs text-zinc-400 mt-0.5">{{ notif.time }}</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="p-3 text-center border-t border-zinc-50">
-                <button class="text-xs font-semibold text-zinc-500 hover:text-zinc-900">View All Notifications</button>
+            <div class="p-3 text-center border-t border-zinc-50 dark:border-zinc-800">
+                <button class="text-xs font-semibold text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white">View All Notifications</button>
             </div>
         </div>
       </div>
+
+      <!-- GitHub Link -->
+      <a 
+        href="https://github.com/Likeur" 
+        target="_blank"
+        class="p-2.5 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-full hover:bg-zinc-50 dark:hover:bg-zinc-700 transition-colors"
+      >
+        <Github class="w-5 h-5 text-zinc-600 dark:text-zinc-300" />
+      </a>
 
       <!-- Dark Mode Toggle -->
       <button 
@@ -102,35 +111,35 @@ const toggleProfile = () => {
 
       <!-- Profile -->
       <div class="relative">
-        <div 
+        <button 
             @click="toggleProfile"
-            class="w-10 h-10 rounded-full bg-indigo-900 flex items-center justify-center text-white font-bold text-sm cursor-pointer hover:ring-4 hover:ring-indigo-100 transition-all"
+            class="w-10 h-10 rounded-full border border-zinc-200 dark:border-zinc-700 overflow-hidden cursor-pointer hover:ring-4 hover:ring-indigo-100 dark:hover:ring-indigo-900 transition-all focus:outline-none"
         >
-            FIK
-        </div>
+            <img src="/like.png" alt="Profile" class="w-full h-full object-cover" />
+        </button>
 
         <!-- Profile Dropdown -->
-        <div v-if="isProfileOpen" class="absolute right-0 top-14 w-64 bg-white border border-zinc-100 rounded-2xl shadow-xl z-50 overflow-hidden">
-            <div class="p-4 border-b border-zinc-50 flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-indigo-900 flex items-center justify-center text-white font-bold text-sm">FIK</div>
+        <div v-if="isProfileOpen" class="absolute right-0 top-14 w-64 bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 rounded-2xl shadow-xl z-50 overflow-hidden">
+            <div class="p-4 border-b border-zinc-50 dark:border-zinc-800 flex items-center gap-3">
+                <img src="/like.png" alt="Profile" class="w-10 h-10 rounded-full object-cover border border-zinc-200 dark:border-zinc-700" />
                 <div>
-                    <p class="text-sm font-bold text-zinc-900">Fikri Studio</p>
-                    <p class="text-xs text-zinc-500">Admin Account</p>
+                    <p class="text-sm font-bold text-zinc-900 dark:text-white">Likeur</p>
+                    <p class="text-xs text-zinc-500 dark:text-zinc-400">Admin Account</p>
                 </div>
             </div>
             <div class="p-2">
-                <button class="w-full flex items-center gap-3 px-3 py-2 text-sm text-zinc-600 hover:bg-zinc-50 rounded-lg transition-colors">
+                <button class="w-full flex items-center gap-3 px-3 py-2 text-sm text-zinc-600 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800 rounded-lg transition-colors">
                     <User class="w-4 h-4" /> My Profile
                 </button>
-                <button class="w-full flex items-center gap-3 px-3 py-2 text-sm text-zinc-600 hover:bg-zinc-50 rounded-lg transition-colors">
+                <button class="w-full flex items-center gap-3 px-3 py-2 text-sm text-zinc-600 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800 rounded-lg transition-colors">
                     <Settings class="w-4 h-4" /> Account Settings
                 </button>
-                 <button class="w-full flex items-center gap-3 px-3 py-2 text-sm text-zinc-600 hover:bg-zinc-50 rounded-lg transition-colors">
+                 <button class="w-full flex items-center gap-3 px-3 py-2 text-sm text-zinc-600 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800 rounded-lg transition-colors">
                     <BadgeCheck class="w-4 h-4" /> Subscription
                 </button>
             </div>
-            <div class="p-2 border-t border-zinc-50">
-                <button class="w-full flex items-center gap-3 px-3 py-2 text-sm text-red-500 hover:bg-red-50 rounded-lg transition-colors">
+            <div class="p-2 border-t border-zinc-50 dark:border-zinc-800">
+                <button class="w-full flex items-center gap-3 px-3 py-2 text-sm text-red-500 hover:bg-red-50 dark:hover:bg-red-900/10 rounded-lg transition-colors">
                     <LogOut class="w-4 h-4" /> Sign Out
                 </button>
             </div>

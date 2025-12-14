@@ -139,7 +139,7 @@ const sessionsSeries = [
       <div class="flex items-center justify-between mb-6">
          <div>
             <h1 class="text-2xl font-bold text-zinc-900 dark:text-white flex items-center gap-2">
-               Hey, Fikri 
+               Hey, Likeur 
                <span class="text-xs text-zinc-400 bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded-full border border-zinc-200 dark:border-zinc-700">👋</span>
             </h1>
             <p class="text-sm text-zinc-500 dark:text-zinc-400">Monday, 24 February 2024</p>
@@ -159,16 +159,16 @@ const sessionsSeries = [
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatCard title="Sales performance" value="$23,127" :trend="12" icon="sales">
-            <template #icon><BarChart2 class="w-4 h-4 text-zinc-600" /></template>
+            <template #icon><BarChart2 class="w-4 h-4 text-zinc-600 dark:text-zinc-300" /></template>
         </StatCard>
         <StatCard title="Total Sales" value="1,849" :trend="3" icon="dollar">
-            <template #icon><DollarSign class="w-4 h-4 text-zinc-600" /></template>
+            <template #icon><DollarSign class="w-4 h-4 text-zinc-600 dark:text-zinc-300" /></template>
         </StatCard>
          <StatCard title="Average Revenue" value="$15,239" :trend="8" icon="bag">
-            <template #icon><ShoppingBag class="w-4 h-4 text-zinc-600" /></template>
+            <template #icon><ShoppingBag class="w-4 h-4 text-zinc-600 dark:text-zinc-300" /></template>
         </StatCard>
          <StatCard title="Average Order" value="2,034" :trend="-3" icon="bag">
-            <template #icon><Package class="w-4 h-4 text-zinc-600" /></template>
+            <template #icon><Package class="w-4 h-4 text-zinc-600 dark:text-zinc-300" /></template>
         </StatCard>
       </div>
     </div>
