@@ -145,7 +145,7 @@ const sessionsSeries = [
             <p class="text-sm text-zinc-500 dark:text-zinc-400">Monday, 24 February 2024</p>
          </div>
          <div class="flex items-center gap-3">
-            <button class="px-4 py-2 text-sm font-medium text-white bg-indigo-950 dark:bg-indigo-900 rounded-lg hover:bg-indigo-900 dark:hover:bg-indigo-800 transition-colors">
+            <button class="px-4 py-2 text-sm font-medium text-orange-500 bg-orange-50 dark:bg-orange-500/10 border border-orange-100 dark:border-orange-500/20 rounded-lg hover:bg-orange-100 dark:hover:bg-orange-500/20 transition-colors">
                This Month
             </button>
             <button class="px-4 py-2 text-sm font-medium text-zinc-700 dark:text-zinc-200 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-700 transition-colors">

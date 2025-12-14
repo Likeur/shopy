@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.0",
+    "@vuepic/vue-datepicker": "^12.1.0",
     "apexcharts": "^5.3.6",
     "lucide-vue-next": "^0.561.0",
     "tailwindcss": "^4.0.0",
