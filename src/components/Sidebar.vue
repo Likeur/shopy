@@ -8,15 +8,11 @@ import {
   Users, 
   Settings, 
   LogOut,
-  Home,
   Calendar,
   Wallet,
   Bell
 } from 'lucide-vue-next';
 
-// Mapping icons based on the visual approximation
-// Top logo: Orange generic icon
-// Nav items: Home, Grid/Dashboard, ShoppingBag, Wallet/Card, Users, Messages, PieChart (Analytics), Settings
 </script>
 
 <template>
@@ -31,47 +27,71 @@ import {
 
     <!-- Navigation -->
     <nav class="flex flex-col flex-1 gap-6 w-full items-center">
-      <button class="p-3 text-gray-400 rounded-xl hover:bg-orange-50 hover:text-orange-500 transition-colors">
-        <Home class="w-6 h-6" />
-      </button>
-
-      <button class="relative p-3 text-white bg-orange-500 rounded-xl shadow-lg shadow-orange-500/30">
+      <!-- Overview (Active) -->
+      <button class="group relative p-3 text-orange-500 bg-orange-50 rounded-xl border border-orange-100">
         <LayoutGrid class="w-6 h-6" />
-        <span class="absolute top-2 right-2 w-2 h-2 bg-white rounded-full"></span>
+        <span class="absolute right-0 top-2 w-1.5 h-1.5 bg-orange-400 rounded-full translate-x-1/2"></span>
+        
+        <!-- Tooltip -->
+        <span class="absolute left-full top-1/2 -translate-y-1/2 ml-4 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">
+           Overview
+        </span>
       </button>
 
-      <button class="p-3 text-gray-400 rounded-xl hover:bg-orange-50 hover:text-orange-500 transition-colors">
+      <!-- Shopping Bag -->
+      <button class="group relative p-3 text-gray-400 rounded-xl hover:bg-gray-50 hover:text-orange-500 transition-colors">
         <ShoppingBag class="w-6 h-6" />
+        <span class="absolute left-full top-1/2 -translate-y-1/2 ml-4 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">
+           Products
+        </span>
       </button>
 
-      <button class="p-3 text-gray-400 rounded-xl hover:bg-orange-50 hover:text-orange-500 transition-colors">
+      <!-- Wallet -->
+      <button class="group relative p-3 text-gray-400 rounded-xl hover:bg-gray-50 hover:text-orange-500 transition-colors">
          <Wallet class="w-6 h-6" />
+         <span class="absolute left-full top-1/2 -translate-y-1/2 ml-4 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">
+           Wallet
+        </span>
       </button>
       
-      <button class="p-3 text-gray-400 rounded-xl hover:bg-orange-50 hover:text-orange-500 transition-colors">
+      <!-- Users -->
+      <button class="group relative p-3 text-gray-400 rounded-xl hover:bg-gray-50 hover:text-orange-500 transition-colors">
         <Users class="w-6 h-6" />
+        <span class="absolute left-full top-1/2 -translate-y-1/2 ml-4 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">
+           Customers
+        </span>
       </button>
 
-      <button class="p-3 text-gray-400 rounded-xl hover:bg-orange-50 hover:text-orange-500 transition-colors">
+      <!-- Messages -->
+      <button class="group relative p-3 text-gray-400 rounded-xl hover:bg-gray-50 hover:text-orange-500 transition-colors">
         <MessageSquare class="w-6 h-6" />
+        <span class="absolute left-full top-1/2 -translate-y-1/2 ml-4 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">
+           Messages
+        </span>
       </button>
 
-      <button class="p-3 text-gray-400 rounded-xl hover:bg-orange-50 hover:text-orange-500 transition-colors">
+      <!-- Analytics -->
+      <button class="group relative p-3 text-gray-400 rounded-xl hover:bg-gray-50 hover:text-orange-500 transition-colors">
          <PieChart class="w-6 h-6" />
-      </button>
-
-      <button class="p-3 text-gray-400 rounded-xl hover:bg-orange-50 hover:text-orange-500 transition-colors">
-         <Bell class="w-6 h-6" />
+         <span class="absolute left-full top-1/2 -translate-y-1/2 ml-4 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">
+           Analytics
+        </span>
       </button>
     </nav>
 
     <!-- Bottom Actions -->
-    <div class="flex flex-col gap-6 mt-auto items-center w-full">
-      <button class="p-3 text-gray-400 rounded-xl hover:bg-gray-50 transition-colors">
+    <div class="flex flex-col gap-6 mt-auto items-center w-full pb-6">
+      <button class="group relative p-3 text-gray-400 rounded-xl hover:bg-gray-50 transition-colors">
         <Settings class="w-6 h-6" />
+         <span class="absolute left-full top-1/2 -translate-y-1/2 ml-4 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">
+           Settings
+        </span>
       </button>
-      <button class="p-3 text-gray-400 rounded-xl hover:text-red-500 transition-colors">
+      <button class="group relative p-3 text-gray-400 rounded-xl hover:text-red-500 transition-colors">
         <LogOut class="w-6 h-6 transform rotate-180" />
+         <span class="absolute left-full top-1/2 -translate-y-1/2 ml-4 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">
+           Logout
+        </span>
       </button>
     </div>
   </aside>
