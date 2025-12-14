@@ -6,6 +6,7 @@ export function useDarkMode() {
     const toggleDarkMode = () => {
         isDark.value = !isDark.value;
         updateTheme();
+        localStorage.setItem('theme', isDark.value ? 'dark' : 'light');
     };
 
     const updateTheme = () => {
@@ -17,10 +18,15 @@ export function useDarkMode() {
     };
 
     onMounted(() => {
-        // Check initial preference (optional, but good practice)
-        if (document.documentElement.classList.contains('dark')) {
+        // Check localStorage or system preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            isDark.value = savedTheme === 'dark';
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
             isDark.value = true;
         }
+        // Apply the theme
+        updateTheme();
     });
 
     return {

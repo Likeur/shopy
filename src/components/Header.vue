@@ -1,7 +1,9 @@
 <script setup>
 import { ref } from 'vue';
-import { Search, Bell, Moon, Sun, ChevronDown, User, Settings, LogOut, FileText, BadgeCheck } from 'lucide-vue-next';
+import { Search, Bell, Moon, Sun, ChevronDown, User, Settings, LogOut, FileText, BadgeCheck, Menu } from 'lucide-vue-next';
 import { useDarkMode } from '../composables/useDarkMode';
+
+defineEmits(['toggle-menu']);
 
 const isNotificationsOpen = ref(false);
 const isProfileOpen = ref(false);
@@ -26,17 +28,24 @@ const toggleProfile = () => {
 </script>
 
 <template>
-  <header class="flex items-center justify-between px-8 py-5 bg-white dark:bg-zinc-900 border-b border-zinc-100 dark:border-zinc-800 transition-colors">
-    <!-- Breadcrumbs -->
-    <div class="flex items-center gap-2 text-sm font-medium">
-      <span class="text-zinc-900 dark:text-white font-bold text-lg transition-colors">Fikri Store</span>
-      <ChevronDown class="w-4 h-4 text-zinc-400" />
-      <span class="text-zinc-300 mx-2">/</span>
-      <span class="text-zinc-500">Home</span>
+  <header class="flex items-center justify-between px-4 lg:px-8 py-5 bg-white dark:bg-zinc-900 border-b border-zinc-100 dark:border-zinc-800 transition-colors">
+    <!-- Left Section: Menu + Breadcrumbs -->
+    <div class="flex items-center gap-4">
+        <button @click="$emit('toggle-menu')" class="lg:hidden p-2 -ml-2 text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg">
+            <Menu class="w-6 h-6" />
+        </button>
+
+        <!-- Breadcrumbs -->
+        <div class="flex items-center gap-2 text-sm font-medium hidden sm:flex">
+            <span class="text-zinc-900 dark:text-white font-bold text-lg transition-colors">Fikri Store</span>
+            <ChevronDown class="w-4 h-4 text-zinc-400" />
+            <span class="text-zinc-300 mx-2">/</span>
+            <span class="text-zinc-500">Home</span>
+        </div>
     </div>
 
     <!-- Search Bar -->
-    <div class="flex-1 max-w-xl mx-8">
+    <div class="flex-1 max-w-xl mx-4 lg:mx-8">
       <div class="relative">
         <Search class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
         <input 
