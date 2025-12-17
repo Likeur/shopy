@@ -7,38 +7,75 @@ defineEmits(['toggle-menu']);
 
 const isNotificationsOpen = ref(false);
 const isProfileOpen = ref(false);
+const isStoreMenuOpen = ref(false);
 const { isDark, toggleDarkMode } = useDarkMode();
 
-const notifications = [
-  { id: 1, title: 'New Order Received', time: '2 min ago', isUnread: true },
-  { id: 2, title: 'Server Limit Reached', time: '1 hr ago', isUnread: false },
-  { id: 3, title: 'New Message from Anna', time: '2 hrs ago', isUnread: true },
-];
+const stores = ['Solide Store', 'Fikri Store', 'Global Store'];
+const selectedStore = ref(stores[0]);
 
 const toggleNotifications = () => {
     isNotificationsOpen.value = !isNotificationsOpen.value;
-    if (isNotificationsOpen.value) isProfileOpen.value = false;
+    isProfileOpen.value = false;
+    isStoreMenuOpen.value = false;
 };
 
 const toggleProfile = () => {
     isProfileOpen.value = !isProfileOpen.value;
-    if (isProfileOpen.value) isNotificationsOpen.value = false;
+    isNotificationsOpen.value = false;
+    isStoreMenuOpen.value = false;
 };
+
+const toggleStoreMenu = () => {
+    isStoreMenuOpen.value = !isStoreMenuOpen.value;
+    isNotificationsOpen.value = false;
+    isProfileOpen.value = false;
+};
+
+const selectStore = (store) => {
+    selectedStore.value = store;
+    isStoreMenuOpen.value = false;
+};
+
+const notifications = ref([
+    { id: 1, title: 'New order from John Doe', time: '2 mins ago', isUnread: true },
+    { id: 2, title: 'Product stock is low', time: '1 hour ago', isUnread: true },
+    { id: 3, title: 'New review received', time: '3 hours ago', isUnread: false },
+]);
 
 </script>
 
 <template>
-  <header class="flex items-center justify-between px-4 lg:px-8 py-5 bg-white dark:bg-zinc-900 border-b border-zinc-100 dark:border-zinc-800 transition-colors">
+  <header class="flex items-center justify-between px-4 lg:px-8 py-3 bg-white dark:bg-zinc-900 border-b border-zinc-100 dark:border-zinc-800 transition-colors">
     <!-- Left Section: Menu + Breadcrumbs -->
     <div class="flex items-center gap-4">
         <button @click="$emit('toggle-menu')" class="lg:hidden p-2 -ml-2 text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg">
             <Menu class="w-6 h-6" />
         </button>
 
-        <!-- Breadcrumbs -->
-        <div class="flex items-center gap-2 text-sm font-medium hidden sm:flex">
-            <span class="text-zinc-900 dark:text-white font-bold text-lg transition-colors">Fikri Store</span>
-            <ChevronDown class="w-4 h-4 text-zinc-400" />
+        <!-- Breadcrumbs with Store Selector -->
+        <div class="flex items-center gap-2 text-sm font-medium hidden sm:flex relative">
+            <div class="relative">
+                <button 
+                    @click="toggleStoreMenu"
+                    class="flex items-center gap-2 text-zinc-900 dark:text-white font-bold text-lg transition-colors hover:text-zinc-600 dark:hover:text-zinc-300"
+                >
+                    {{ selectedStore }}
+                    <ChevronDown class="w-4 h-4 text-zinc-400 transition-transform" :class="{'rotate-180': isStoreMenuOpen}" />
+                </button>
+                
+                <!-- Store Dropdown -->
+                <div v-if="isStoreMenuOpen" class="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 rounded-xl shadow-xl z-50 overflow-hidden">
+                    <button 
+                        v-for="store in stores" 
+                        :key="store"
+                        @click="selectStore(store)"
+                        class="w-full text-left px-4 py-3 text-sm text-zinc-600 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                        :class="{'font-bold text-orange-500': selectedStore === store}"
+                    >
+                        {{ store }}
+                    </button>
+                </div>
+            </div>
             <span class="text-zinc-300 mx-2">/</span>
             <span class="text-zinc-500">Home</span>
         </div>
